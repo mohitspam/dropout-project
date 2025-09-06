@@ -14,7 +14,155 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      intervention_notes: {
+        Row: {
+          completed: boolean
+          created_at: string
+          follow_up_date: string | null
+          id: string
+          intervention_type: string
+          note: string
+          staff_member: string
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          follow_up_date?: string | null
+          id?: string
+          intervention_type: string
+          note: string
+          staff_member: string
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          follow_up_date?: string | null
+          id?: string
+          intervention_type?: string
+          note?: string
+          staff_member?: string
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intervention_notes_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+          role: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          role?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      students: {
+        Row: {
+          attendance_percentage: number
+          cgpa: number
+          created_at: string
+          department: string
+          disciplinary_actions: number
+          distance_from_home: number | null
+          email: string
+          extracurriculars: number
+          family_income: number | null
+          fee_default: boolean
+          gender: Database["public"]["Enums"]["gender"]
+          hostel_accommodation: boolean
+          id: string
+          name: string
+          prediction_factors: Json | null
+          previous_education_gap: boolean
+          risk_level: Database["public"]["Enums"]["risk_level"] | null
+          risk_score: number | null
+          scholarship: boolean
+          semester: number
+          sgpa: number
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          attendance_percentage: number
+          cgpa: number
+          created_at?: string
+          department: string
+          disciplinary_actions?: number
+          distance_from_home?: number | null
+          email: string
+          extracurriculars?: number
+          family_income?: number | null
+          fee_default?: boolean
+          gender: Database["public"]["Enums"]["gender"]
+          hostel_accommodation?: boolean
+          id?: string
+          name: string
+          prediction_factors?: Json | null
+          previous_education_gap?: boolean
+          risk_level?: Database["public"]["Enums"]["risk_level"] | null
+          risk_score?: number | null
+          scholarship?: boolean
+          semester: number
+          sgpa: number
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          attendance_percentage?: number
+          cgpa?: number
+          created_at?: string
+          department?: string
+          disciplinary_actions?: number
+          distance_from_home?: number | null
+          email?: string
+          extracurriculars?: number
+          family_income?: number | null
+          fee_default?: boolean
+          gender?: Database["public"]["Enums"]["gender"]
+          hostel_accommodation?: boolean
+          id?: string
+          name?: string
+          prediction_factors?: Json | null
+          previous_education_gap?: boolean
+          risk_level?: Database["public"]["Enums"]["risk_level"] | null
+          risk_score?: number | null
+          scholarship?: boolean
+          semester?: number
+          sgpa?: number
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +171,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      gender: "male" | "female" | "other"
+      risk_level: "low" | "medium" | "high"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +299,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      gender: ["male", "female", "other"],
+      risk_level: ["low", "medium", "high"],
+    },
   },
 } as const

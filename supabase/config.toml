@@ -1,1 +1,4 @@
 project_id = "rcpdgenhjfanxsjpogfr"
+
+[functions.predict-dropout-risk]
+verify_jwt = false
